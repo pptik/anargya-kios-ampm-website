@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>{{.title}}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/public/Semantic-UI-CSS-master/semantic.css">
+    <link rel="stylesheet" type="text/css" href="/public/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/public/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="/public/css/buttons.dataTables.min.css">
+    <link rel="shortcut icon" type="image/png" href="/public/img/shortcut-iconv2.png">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+    <script src="/public/js/jquery-2.2.4.min.js"></script>
+    <script src="/public/js/jquery.dataTables.min.js"></script>
+    <script src="/public/js/dataTables.buttons.min.js"></script>
+    <script src="/public/js/buttons.html5.min.js"></script>
+    <script src="/public/js/buttons.print.min.js"></script>
+    <script src="/public/js/noback.js"></script>
+    <script src="/public/Semantic-UI-CSS-master/semantic.js"></script>
+    <script src="/public/node_modules/list.js/dist/list.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
+
+
+    {{range .moreStyles}}
+      <link rel="stylesheet" type="text/css" href="/public/{{.}}">
+    {{end}}
+    {{range .moreScripts}}
+      <!--<script src="/public/{{.}}" type="text/javascript" charset="utf-8"></script>-->
+      {{.}}
+    {{end}}
+
+  </head>
+  <body>

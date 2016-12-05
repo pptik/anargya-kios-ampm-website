@@ -1,0 +1,38 @@
+*{
+    font-family: 'Open Sans', sans-serif;
+}
+.white-text{
+    color: white;
+}
+
+.red-background{
+    /*background-color: #C13E58;*/
+    background-image: url("/public/img/header-web.png");
+    color: #FFFFFF;
+    background-repeat: no-repeat;
+    background-size: auto;
+    opacity: 0.8;
+}
+
+.rounded-input{
+    border-radius: 10px;
+}
+
+input#input-cari
+{
+    background-image: url("/public/img/search-icon.png");
+    background-repeat: no-repeat;
+    text-indent: 25px;
+    background-size: 20px 20px;
+    background-position: left;
+    background-position-x: 0.5em;
+
+}
+
+#input-cari::-webkit-input-placeholder:focus{
+    visibility: hidden;
+}
+
+.padding{
+    padding: 1em;
+}

@@ -1,0 +1,143 @@
+{{set . "title" "Dashboard | Modul Pembayaran Anargya Media"}}
+{{template "header.html" .}}
+<!--Pengaturan animasi-->
+<style>
+    /* Paste this css to your style sheet file or under head tag */
+    /* This only works with JavaScript,
+    if it's not present, don't show loader */
+    .no-js #loader { display: none;  }
+    .js #loader { display: block; position: absolute; left: 100px; top: 0; }
+    .se-pre-con {
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        width: 100%;
+        height: 100%;
+        z-index: 9999;
+        background: url("/public/img/pre-loader.gif") center no-repeat #fff;
+    }
+</style>
+<!--Navbar-->
+<div class="ui stackable menu" style="box-shadow: 1px 1px 1px grey;margin-top: 0em;">
+    <div class="item">
+        <h3>
+            <a href="/" style="color: #C13E58;">KIOS AMPM</a>
+        </h3>
+    </div>
+
+    <div class="right menu">
+        <a class="item" style="color: #6C7A89;"><i class="user icon"></i>{{.session.username}}</a>
+        <a class="item" style="color: #6C7A89;" href="/logout">Keluar</a>
+    </div>
+</div>
+
+<!-- Content -->
+<div class="ui stackable four column grid container">
+    <div class="four wide column">
+        <div class="ui card divided items" style="padding: 1em;box-shadow: 1px 1px 1.8px grey;width: 100%;">
+            <div class="item" style="color: #3498db;">Saldo: Rp. {{.saldo}}</div>
+            <div class="item"><a href="/" style="color:#C13E58;"><i class="home icon"></i>Dashboard</a></div>
+            <div class="item"><a href="/App/Laporan" style="color: #6C7A89;"><i class="newspaper icon"></i>Laporan</a>
+            </div>
+            <div class="item"><a href="/App/Produk" style="color: #6C7A89;"><i class="list icon"></i>Produk</a></div>
+        </div>
+    </div>
+    <div class="twelve wide column">
+
+        <div class="ui card" style="padding: 1em;box-shadow: 1px 1px 1.8px grey;width: 100%;">
+            <div style="font-size: larger">Transaksi hari berjalan</div>
+            <br/>
+            <table class="ui celled table tablet stackable" style="font-size: 10px;">
+                <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Kode Produk</th>
+                    <th>Jumlah transaksi</th>
+                    <th>Keterangan</th>
+                    <th>Status</th>
+                    <th>Tanggal transaksi</th>
+                </tr>
+                </thead>
+                <tbody id="tbody-transaksi-hari-berjalan">
+                </tbody>
+            </table>
+        </div>
+        <div class="ui card" style="padding: 1em;box-shadow: 1px 1px 1.8px grey;width: 100%;">
+            <div style="font-size: larger">Transaksi bulan berjalan</div>
+            <br/>
+            <table class="ui celled table tablet stackable" style="font-size: 10px;">
+                <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Kode Produk</th>
+                    <th>Jumlah transaksi</th>
+                    <th>Keterangan</th>
+                    <th>Status</th>
+                    <th>Tanggal transaksi</th>
+                </tr>
+                </thead>
+                <tbody id="tbody-transaksi-bulan-berjalan">
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+<!--Loading animation during loading page-->
+<div class="se-pre-con"></div>
+
+<!--Footer-->
+<div class="ui grid center aligned" style="padding: 2em;">
+    <a href="http://anargya.com/" target="_blank" style="color:#C13E58;">
+        © 2016 PT. Anargya Media Indonesia
+    </a>
+</div>
+
+<script>
+    //Modal selama pemanggilan data JSON
+    //paste this code under the head tag or in a separate js file.
+    // Wait for window load
+    $(window).load(function() {
+        // Animate loader off screen
+        $(".se-pre-con").fadeOut("slow");;
+    });
+
+    //Penambahan baris transaksi hari berjalan
+    var jsonStringTransaksiHariBerjalan = "{{.transaksiHariBerjalan}}"
+    //alert("jsonString:"+jsonStringTransaksiHariBerjalan)
+    var parse = JSON.parse(jsonStringTransaksiHariBerjalan)
+    //alert("Panjang JSON: "+parse.length)
+    for (var i = 0; i < parse.length; i++) {//loop baris transaksi hari berjalan
+        //Pengkondisian status
+        var status;
+        if(parse[i].Status == 1){
+            status = "<div class='ui red horizontal label'>Gagal</div>"
+        }else if(parse[i].Status == 0){
+            status = "<div class='ui green horizontal label'>Berhasil</div>"
+        }
+
+        $("#tbody-transaksi-hari-berjalan").append("<tr><td>"+(i+1)+"</td><td>"+parse[i].ProductCode+"</td><td>"+parse[i].Amount+"</td><td>"+parse[i].Narrative+"</td><td id='status-transaksi'>"+status+"</td><td>"+parse[i].CreatedAt.substring(0, 10)+"</td> </tr>")
+
+    }
+
+    //Penambahan baris transaksi bulan berjalan
+    var jsonStringTransaksiBulanBerjalan = "{{.transaksiBulanBerjalan}}"
+    //alert("jsonString:"+jsonStringTransaksiBulanBerjalan)
+    var parse = JSON.parse(jsonStringTransaksiBulanBerjalan)
+    //alert("Panjang JSON: "+parse.length)
+    for (var i = 0; i < parse.length; i++) {//loop baris transaksi bulan berjalan
+        //Pengkondisian status
+        var status;
+        if(parse[i].Status == 1){
+            status = "<div class='ui red horizontal label'>Gagal</div>"
+        }else if(parse[i].Status == 0){
+            status = "<div class='ui green horizontal label'>Berhasil</div>"
+        }
+
+        $("#tbody-transaksi-bulan-berjalan").append("<tr><td>"+(i+1)+"</td><td>"+parse[i].ProductCode+"</td><td>"+parse[i].Amount+"</td><td>"+parse[i].Narrative+"</td><td id='status-transaksi'>"+status+"</td><td>"+parse[i].CreatedAt.substring(0, 10)+"</td> </tr>")
+
+    }
+
+</script>
+{{template "footer.html" .}}

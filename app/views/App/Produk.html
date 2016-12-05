@@ -1,0 +1,92 @@
+{{set . "title" "Produk | Modul Pembayaran Anargya Media"}}
+{{template "header.html" .}}
+<!--Pengaturan animasi-->
+<style>
+    /* Paste this css to your style sheet file or under head tag */
+    /* This only works with JavaScript,
+    if it's not present, don't show loader */
+    .no-js #loader { display: none;  }
+    .js #loader { display: block; position: absolute; left: 100px; top: 0; }
+    .se-pre-con {
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        width: 100%;
+        height: 100%;
+        z-index: 9999;
+        background: url("/public/img/pre-loader.gif") center no-repeat #fff;
+    }
+</style>
+
+<!--Navbar-->
+<div class="ui stackable menu" style="box-shadow: 1px 1px 1px grey;margin-top: 0em;">
+    <div class="item">
+        <h3>
+            <a href="/" style="color: #C13E58;">KIOS AMPM</a>
+        </h3>
+    </div>
+
+    <div class="right menu">
+        <a class="item" style="color: #6C7A89;"><i class="user icon"></i>{{.session.username}}</a>
+        <a class="item" style="color: #6C7A89;" href="/logout">Keluar</a>
+    </div>
+</div>
+
+<!-- Content -->
+<div class="ui stackable four column grid container">
+    <div class="four wide column">
+        <div class="ui card divided items" style="padding: 1em;box-shadow: 1px 1px 3px grey;width: 100%;">
+            <div class="item"><a href="/" style="color: #6C7A89;"><i class="home icon"></i>Dashboard</a></div>
+            <div class="item"><a href="/App/Laporan" style="color: #6C7A89;"><i class="newspaper icon"></i>Laporan</a>
+            </div>
+            <div class="item"><a href="/App/Produk" style="color:#C13E58;"><i class="list icon"></i>Produk</a></div>
+        </div>
+    </div>
+    <div class="twelve wide column">
+        <div class="ui card" style="padding: 1em;box-shadow: 1px 1px 3px grey;width: 100%;">
+            <div style="font-size: larger">Produk</div>
+            <br/>
+            <p id="produk">
+
+            </p>
+        </div>
+    </div>
+</div>
+
+<!--Loading animation during loading page-->
+<div class="se-pre-con"></div>
+
+<!--Footer-->
+<div class="ui grid center aligned" style="padding: 2em;">
+    <a href="http://anargya.com/" target="_blank" style="color:#C13E58;">
+        © 2016 PT. Anargya Media Indonesia
+    </a>
+</div>
+<script>
+    //Modal selama pemanggilan data JSON
+    //paste this code under the head tag or in a separate js file.
+    // Wait for window load
+    $(window).load(function() {
+        // Animate loader off screen
+        $(".se-pre-con").fadeOut("slow");;
+    });
+
+    var text = "{{.produk}}";
+    var json = JSON.parse(text);
+
+    for (var i = 0; i < json.length; i++) {
+        //Menambah title nama produknya
+        $("#produk").append("<span id='" + json[i][0] + "'>" + json[i][0] + "</span>")
+        $("#" + json[i][0] + "").append("<br/>")
+
+        //Menambah tabel detail produk berdasarkan nama
+        $("#" + json[i][0] + "").append("<table class='ui celled table'><thead><tr><th>Nonimal</th><th>Price</th><th>Product Code</th><th>Product Name</th><th>Product Category</th></tr></thead>" +
+                "<tbody id='"+json[i][0]+"'></tbody></table>")
+
+        for (var j = 0; j < json[i][1].product.length; j++) {
+            $("tbody#" + json[i][0] + "").append("<tr><td>"+json[i][1].product[j].nominal+"</td><td>"+json[i][1].product[j].price+"</td><td>"+json[i][1].product[j].product_code+"</td><td>"+json[i][1].product[j].product_name+"</td><td>"+json[i][1].product[j].product_category+"</td></tr>")
+        }
+
+    }
+</script>
+{{template "footer.html" .}}

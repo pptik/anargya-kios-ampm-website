@@ -1,0 +1,70 @@
+{{set . "title" "Login | Modul Pembayaran Anargya Media"}}
+{{template "header.html" .}}
+
+<!--Navbar-->
+<div class="ui stackable menu" style="box-shadow: 1px 1px 1px grey;">
+    <div class="item">
+        <h3>
+            <a href="/" style="color: #C13E58;">KIOS AMPM</a>
+        </h3>
+    </div>
+
+    <div class="right menu">
+        <a class="item" style="color: #6C7A89;" href="/login">Masuk</a>
+        <a class="item" style="color: #C13E58;" href="http://anargya.com" target="_blank">
+            Anargya
+        </a>
+    </div>
+</div>
+
+<!--Wrapper flash & section-->
+<div id="wrapper" style="background-color: #F4F4F4;padding: 3em;">
+    <!-- Flash message ketidak cocokan user dan pin-->
+
+    {{if .flash.error}}
+    <div class="ui grid sixteen column ignored negative message container">
+        {{.flash.error}}
+    </div>
+    {{end}}
+    <!-- Flash message dari validasi masukan-->
+    {{if .errors}}
+    <div class="ui grid sixteen column ignored negative message container">
+        Mohon isi field username dan pin
+    </div>
+    {{end}}
+
+    <!--Login Section-->
+    <div class="doubling ui grid centered aligned">
+
+
+        <form class="ui form" method="POST" action="login">
+            <div class="field">
+                <input type="text" name="user" placeholder="username">
+            </div>
+            <div class="field">
+                <input type="password" name="pin" placeholder="pin">
+            </div>
+
+            <button class="large ui button"
+                    style="background: linear-gradient(#008aea, #024dcf);font-weight: 100;color: #FFFFFF;"
+                    type="submit">Submit
+            </button>
+            <br/>
+            <br/>
+            <div><a href="/register">Daftar</a></div>
+        </form>
+
+    </div>
+</div>
+<!--end wrapper flash & section-->
+
+<!--Footer-->
+<div class="ui grid center aligned" style="padding: 2em;">
+    <a href="http://anargya.com/" target="_blank" style="color:#C13E58;">
+        © 2016 PT. Anargya Media Indonesia
+    </a>
+</div>
+<script>
+    noback.init();
+</script>
+{{template "footer.html" .}}

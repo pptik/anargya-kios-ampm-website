@@ -1,0 +1,86 @@
+{{set . "title" "Dashboard | Modul Pembayaran Anargya Media"}}
+{{template "header.html" .}}
+
+<!--Navbar-->
+<div class="ui stackable menu" style="box-shadow: 1px 1px 1px grey;">
+    <div class="item">
+        <h3>
+            <a href="/" style="color: #C13E58;">KIOS AMPM</a>
+        </h3>
+    </div>
+
+    <div class="right menu">
+        <a href="/" class="item" style="color: #6C7A89;"><i class="home icon"></i>Dashboard</a>
+        <a href="/App/Laporan" class="item" style="color:#C13E58;"><i class="newspaper icon"></i>Laporan</a>
+        <a href="/App/Produk" style="color: #6C7A89;" class="item"><i class="list icon"></i>Produk</a>
+        <a class="item" style="color: #6C7A89;"><i class="user icon"></i>{{.session.username}}</a>
+        <a class="item" style="color: #6C7A89;" href="/logout">Keluar</a>
+
+    </div>
+</div>
+
+<!-- Content -->
+<div class="ui stackable grid container">
+    <div class="sixteen wide column">
+        <div class="ui card" style="padding: 1em;box-shadow: 1px 1px 1.8px grey;width: 100%;">
+            <div style="font-size: larger">Laporan</div>
+            <br/>
+            <table class="ui very basic table" id="laporan" style="padding:5px;" cellspacing="0" width="100%">
+                <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Trx ID</th>
+                    <th>Status</th>
+                    <th>MSISDN</th>
+                    <th>Outler Trx ID</th>
+                    <th>SKU Code</th>
+                    <th>Price</th>
+                    <th>Balance</th>
+                    <th>Serial No</th>
+                    <th>Accepted Date</th>
+                    <th>Pending Date</th>
+                    <th>Suspend Date</th>
+                    <th>Success Date</th>
+                    <th>Failed Date</th>
+                    <th>RCD</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>5</td>
+                    <td>6</td>
+                    <td>7</td>
+                    <td>8</td>
+                    <td>9</td>
+                    <td>10</td>
+                    <td>11</td>
+                    <td>12</td>
+                    <td>13</td>
+                    <td>14</td>
+                    <td>15</td>
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+</div>
+
+
+<!--Footer-->
+<div class="ui grid center aligned" style="padding: 2em;">
+    <a href="http://anargya.com/" target="_blank" style="color:#C13E58;">
+        © 2016 PT. Anargya Media Indonesia
+    </a>
+</div>
+<script>
+    $('#laporan').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    });
+</script>
+{{template "footer.html" .}}

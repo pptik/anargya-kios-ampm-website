@@ -1,0 +1,164 @@
+{{set . "title" "Modul Pembayaran Anargya Media"}}
+{{template "header.html" .}}
+<!--Navbar-->
+<div class="ui stackable menu">
+    <div class="item">
+        <h3>
+            <a href="/" style="color: #C13E58;">KIOS AMPM</a>
+        </h3>
+    </div>
+
+    <div class="right menu">
+        <a class="item" style="color: #6C7A89;" href="/login">Masuk</a>
+        <a class="item" style="color: #C13E58;" href="http://anargya.com" target="_blank">
+            Anargya
+        </a>
+    </div>
+</div>
+
+<!--Registration-->
+<div class="red-background" align="center" style="margin: -1em;padding: 5em">
+    <span style="font-size: large;">Lakukan pembayaran dengan mendaftarkan diri anda.</span>
+    <br/>
+    <br/>
+    <a href="/register" class="large ui button" style="background: linear-gradient(#008aea, #024dcf);font-weight: 100;color: #FFFFFF;">
+        Registrasi
+    </a>
+</div>
+
+<div id="users">
+
+    <!--Search Input-->
+    <div style="margin-top: 1em;padding: 1em;box-shadow: 10px 0.1px 5px grey;" class="ui column grid">
+
+        <div class="four wide column"></div>
+        <div class="eight wide column">
+            <form class="ui form">
+                <div class="field">
+                    <input type="text" id="input-cari" placeholder="Cari produk..." style="border-radius: 20px;"
+                           class="search">
+                    <!--<ul class="list">
+                        <li>
+                            <h3 class="name">Jonny Stromberg</h3>
+                            <p class="born">1986</p>
+                        </li>
+                        <li>
+                            <h3 class="name">Jonas Arnklint</h3>
+                            <p class="born">1985</p>
+                        </li>
+                        <li>
+                            <h3 class="name">Martina Elm</h3>
+                            <p class="born">1986</p>
+                        </li>
+                        <li>
+                            <h3 class="name">Gustaf Lindqvist</h3>
+                            <p class="born">1983</p>
+                        </li>
+                    </ul>-->
+                </div>
+            </form>
+        </div>
+        <div class="four wide column"></div>
+    </div>
+
+    <!--Produk-->
+    <div class="doubling ui grid centered aligned list"
+         style="background-color: #F4F4F4;margin-top: 15px;padding: 3em;">
+
+        <div class="six wide tablet sixteen wide mobile four wide computer column">
+            <div class="ui card centered aligned">
+                <div class="image">
+                    <img src="/public/img/produk/3.png">
+                </div>
+                <div class="content">
+                    <a class="header name">Three</a>
+                </div>
+            </div>
+        </div>
+        <div class="six wide tablet sixteen wide mobile four wide computer column">
+            <div class="ui card centered aligned">
+                <div class="image">
+                    <img src="/public/img/produk/isat.png">
+                </div>
+                <div class="content">
+                    <a class="header name">Indosat</a>
+                </div>
+            </div>
+        </div>
+        <div class="six wide tablet sixteen wide mobile four wide computer column">
+            <div class="ui card centered aligned">
+                <div class="image">
+                    <img src="/public/img/produk/smartfren.png">
+                </div>
+                <div class="content">
+                    <a class="header name">Smartfren</a>
+                </div>
+            </div>
+        </div>
+        <div class="six wide tablet sixteen wide mobile four wide computer column">
+            <div class="ui card centered aligned">
+                <div class="image">
+                    <img src="/public/img/produk/tsel.png">
+                </div>
+                <div class="content">
+                    <a class="header name">Telkomsel</a>
+                </div>
+            </div>
+        </div>
+        <div class="six wide tablet sixteen wide mobile four wide computer column">
+            <div class="ui card centered aligned">
+                <div class="image">
+                    <img src="/public/img/produk/xl.png">
+                </div>
+                <div class="content">
+                    <a class="header name">XL</a>
+                </div>
+            </div>
+        </div>
+        <div class="six wide tablet sixteen wide mobile four wide computer column">
+            <div class="ui card centered aligned">
+                <div class="image">
+                    <img src="/public/img/produk/bpjs.png">
+                </div>
+                <div class="content">
+                    <a class="header name">BPJS</a>
+                </div>
+            </div>
+        </div>
+        <div class="six wide tablet sixteen wide mobile four wide computer column">
+            <div class="ui card centered aligned">
+                <div class="image">
+                    <img src="/public/img/produk/pln.png">
+                </div>
+                <div class="content">
+                    <a class="header name">PLN</a>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+
+        var options = {
+            valueNames: ['name']
+        };
+
+        var userList = new List('users', options);
+
+    });
+
+</script>
+
+<!--Footer-->
+<div class="ui grid center aligned" style="padding: 2em;">
+    <a href="http://anargya.com/" target="_blank" style="color:#C13E58;">
+        © 2016 PT. Anargya Media Indonesia
+    </a>
+</div>
+
+
+{{template "footer.html" .}}

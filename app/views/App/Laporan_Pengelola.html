@@ -1,0 +1,116 @@
+{{set . "title" "Dashboard | Modul Pembayaran Anargya Media"}}
+{{template "header.html" .}}
+<!--Pengaturan animasi-->
+<style>
+    /* Paste this css to your style sheet file or under head tag */
+    /* This only works with JavaScript,
+    if it's not present, don't show loader */
+    .no-js #loader { display: none;  }
+    .js #loader { display: block; position: absolute; left: 100px; top: 0; }
+    .se-pre-con {
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        width: 100%;
+        height: 100%;
+        z-index: 9999;
+        background: url("/public/img/pre-loader.gif") center no-repeat #fff;
+    }
+</style>
+
+<!--Navbar-->
+<div class="ui stackable menu" style="box-shadow: 1px 1px 1px grey;margin-top: 0em;">
+    <div class="item">
+        <h3>
+            <a href="/" style="color: #C13E58;">KIOS AMPM</a>
+        </h3>
+    </div>
+
+    <div class="right menu">
+        <a href="/" class="item" style="color: #6C7A89;"><i class="home icon"></i>Dashboard</a>
+        <a href="/App/Laporan" class="item" style="color:#C13E58;"><i class="newspaper icon"></i>Laporan</a>
+        <a href="/App/Produk" style="color: #6C7A89;" class="item"><i class="list icon"></i>Produk</a>
+        <a class="item" style="color: #6C7A89;"><i class="user icon"></i>{{.session.username}}</a>
+        <a class="item" style="color: #6C7A89;" href="/logout">Keluar</a>
+
+    </div>
+</div>
+
+<!-- Content -->
+<div class="ui stackable grid container">
+    <div class="sixteen wide column">
+        <div class="ui card" style="padding: 1em;box-shadow: 1px 1px 1.8px grey;width: 100%;">
+            <div style="font-size: larger">Laporan Pengelola</div>
+            <br/>
+            <table class="ui very basic table" id="laporan" style="padding:5px;font-size: smaller" cellspacing="0" width="100%">
+                <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Trx ID</th>
+                    <th>Status</th>
+                    <th>MSISDN</th>
+                    <th>Outler Trx ID</th>
+                    <th>SKU Code</th>
+                    <th>Price</th>
+                    <th>Balance</th>
+                    <th>Serial No</th>
+                    <th>Accepted Date</th>
+                    <th>Pending Date</th>
+                    <th>Suspend Date</th>
+                    <th>Success Date</th>
+                    <th>Failed Date</th>
+                    <th>RCD</th>
+                    <th>Aksi</th>
+                </tr>
+                </thead>
+                <tbody id="tbody-laporan">
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+<!--Loading animation during loading page-->
+<div class="se-pre-con"></div>
+
+<!--Footer-->
+<div class="ui grid center aligned" style="padding: 2em;">
+    <a href="http://anargya.com/" target="_blank" style="color:#C13E58;">
+        © 2016 PT. Anargya Media Indonesia
+    </a>
+</div>
+<script>
+    //Modal selama pemanggilan data JSON
+    //paste this code under the head tag or in a separate js file.
+    // Wait for window load
+    $(window).load(function() {
+        // Animate loader off screen
+        $(".se-pre-con").fadeOut("slow");;
+    });
+
+    //Proses penambahan baris dari JSON
+    var jsonLaporan = "{{.jsonLaporan}}"
+    var parse = JSON.parse(jsonLaporan)
+    //alert("Panjang JSON: "+parse.length)
+    for (var i = 0; i < parse.length; i++) {//loop baris transaksi hari berjalan
+        //Pengkondisian status
+        var status;
+        if(parse[i].Status == 1){
+            status = "<div class='ui red horizontal label'>Gagal</div>"
+        }else if(parse[i].Status == 0){
+            status = "<div class='ui green horizontal label'>Berhasil</div>"
+        }
+
+        $("#tbody-laporan").append("<tr><td>"+(i+1)+"</td><td></td><td>"+status+"</td><td></td><td></td><td>"+parse[i].ProductCode+"</td><td>"+parse[i].Amount+"</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td style='text-align: center;'><a href='/status_laporan/"+parse[i].Id+"'><i class='write icon'></i></a></td></tr>")
+    }
+
+    $('#laporan').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    });
+</script>
+{{template "footer.html" .}}
