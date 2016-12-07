@@ -42,7 +42,7 @@
         <div class="ui card" style="padding: 1em;box-shadow: 1px 1px 1.8px grey;width: 100%;">
             <div style="font-size: larger">Laporan</div>
             <br/>
-            <table class="ui very basic table" id="laporan" style="padding:5px;" cellspacing="0" width="100%">
+            <table class="ui very basic table" id="laporan" style="padding:5px;font-size: smaller" cellspacing="0" width="100%">
                 <thead>
                 <tr>
                     <th>No</th>
@@ -102,7 +102,7 @@
             status = "<div class='ui green horizontal label'>Berhasil</div>"
         }
 
-        $("#tbody-laporan").append("<tr><td>"+(i+1)+"</td><td></td><td>"+status+"</td><td></td><td></td><td>"+parse[i].ProductCode+"</td><td>"+parse[i].Amount+"</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>")
+        $("#tbody-laporan").append("<tr><td>"+(i+1)+"</td><td></td><td>"+status+"</td><td></td><td></td><td>"+parse[i].ProductCode+"</td><td class='idr'>"+parse[i].Amount+"</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>")
     }
 
     $('#laporan').DataTable({
@@ -111,5 +111,11 @@
             'copy', 'csv', 'excel', 'pdf', 'print'
         ]
     });
+
+    OSREC.CurrencyFormatter.formatAll(
+        {
+            selector: '.idr',
+            currency: 'IDR'
+        });
 </script>
 {{template "footer.html" .}}

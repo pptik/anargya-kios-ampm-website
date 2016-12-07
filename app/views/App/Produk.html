@@ -84,9 +84,15 @@
                 "<tbody id='"+json[i][0]+"'></tbody></table>")
 
         for (var j = 0; j < json[i][1].product.length; j++) {
-            $("tbody#" + json[i][0] + "").append("<tr><td>"+json[i][1].product[j].nominal+"</td><td>"+json[i][1].product[j].price+"</td><td>"+json[i][1].product[j].product_code+"</td><td>"+json[i][1].product[j].product_name+"</td><td>"+json[i][1].product[j].product_category+"</td></tr>")
+            $("tbody#" + json[i][0] + "").append("<tr><td>"+json[i][1].product[j].nominal+"</td><td class='idr'>"+json[i][1].product[j].price+"</td><td>"+json[i][1].product[j].product_code+"</td><td>"+json[i][1].product[j].product_name+"</td><td>"+json[i][1].product[j].product_category+"</td></tr>")
         }
 
     }
+
+    OSREC.CurrencyFormatter.formatAll(
+        {
+            selector: '.idr',
+            currency: 'IDR'
+        });
 </script>
 {{template "footer.html" .}}

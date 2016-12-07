@@ -36,7 +36,7 @@ func main() {
 				Args: []*revel.MethodArg{ 
 				},
 				RenderArgNames: map[int][]string{ 
-					93: []string{ 
+					94: []string{ 
 					},
 				},
 			},
@@ -45,7 +45,7 @@ func main() {
 				Args: []*revel.MethodArg{ 
 				},
 				RenderArgNames: map[int][]string{ 
-					103: []string{ 
+					104: []string{ 
 					},
 				},
 			},
@@ -54,7 +54,7 @@ func main() {
 				Args: []*revel.MethodArg{ 
 				},
 				RenderArgNames: map[int][]string{ 
-					200: []string{ 
+					202: []string{ 
 						"saldo",
 						"transaksiHariBerjalan",
 						"transaksiBulanBerjalan",
@@ -66,7 +66,7 @@ func main() {
 				Args: []*revel.MethodArg{ 
 				},
 				RenderArgNames: map[int][]string{ 
-					208: []string{ 
+					210: []string{ 
 					},
 				},
 			},
@@ -89,7 +89,7 @@ func main() {
 				Args: []*revel.MethodArg{ 
 				},
 				RenderArgNames: map[int][]string{ 
-					339: []string{ 
+					341: []string{ 
 						"produk",
 					},
 				},
@@ -99,7 +99,7 @@ func main() {
 				Args: []*revel.MethodArg{ 
 				},
 				RenderArgNames: map[int][]string{ 
-					397: []string{ 
+					399: []string{ 
 						"jsonLaporan",
 					},
 				},
@@ -109,7 +109,7 @@ func main() {
 				Args: []*revel.MethodArg{ 
 				},
 				RenderArgNames: map[int][]string{ 
-					451: []string{ 
+					453: []string{ 
 						"jsonLaporan",
 					},
 				},

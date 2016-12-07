@@ -35,7 +35,7 @@
 <div class="ui stackable four column grid container">
     <div class="four wide column">
         <div class="ui card divided items" style="padding: 1em;box-shadow: 1px 1px 1.8px grey;width: 100%;">
-            <div class="item" style="color: #3498db;">Saldo: Rp. {{.saldo}}</div>
+            <div class="item" style="color: #3498db;">Saldo:&nbsp;&nbsp;<span class="idr">{{.saldo}}</span></div>
             <div class="item"><a href="/" style="color:#C13E58;"><i class="home icon"></i>Dashboard</a></div>
             <div class="item"><a href="/App/Laporan" style="color: #6C7A89;"><i class="newspaper icon"></i>Laporan</a>
             </div>
@@ -117,7 +117,7 @@
             status = "<div class='ui green horizontal label'>Berhasil</div>"
         }
 
-        $("#tbody-transaksi-hari-berjalan").append("<tr><td>"+(i+1)+"</td><td>"+parse[i].ProductCode+"</td><td>"+parse[i].Amount+"</td><td>"+parse[i].Narrative+"</td><td id='status-transaksi'>"+status+"</td><td>"+parse[i].CreatedAt.substring(0, 10)+"</td> </tr>")
+        $("#tbody-transaksi-hari-berjalan").append("<tr><td>"+(i+1)+"</td><td>"+parse[i].ProductCode+"</td><td><span class='idr'>"+parse[i].Amount+"</span></td><td>"+parse[i].Narrative+"</td><td id='status-transaksi'>"+status+"</td><td>"+parse[i].CreatedAt.substring(0, 10)+" "+parse[i].CreatedAt.substring(11, 19)+"</td> </tr>")
 
     }
 
@@ -135,9 +135,14 @@
             status = "<div class='ui green horizontal label'>Berhasil</div>"
         }
 
-        $("#tbody-transaksi-bulan-berjalan").append("<tr><td>"+(i+1)+"</td><td>"+parse[i].ProductCode+"</td><td>"+parse[i].Amount+"</td><td>"+parse[i].Narrative+"</td><td id='status-transaksi'>"+status+"</td><td>"+parse[i].CreatedAt.substring(0, 10)+"</td> </tr>")
+        $("#tbody-transaksi-bulan-berjalan").append("<tr><td>"+(i+1)+"</td><td>"+parse[i].ProductCode+"</td><td><span class='idr'>"+parse[i].Amount+"</span></td><td>"+parse[i].Narrative+"</td><td id='status-transaksi'>"+status+"</td><td>"+parse[i].CreatedAt.substring(0, 10)+" "+parse[i].CreatedAt.substring(11, 19)+"</td> </tr>")
 
     }
 
+    OSREC.CurrencyFormatter.formatAll(
+        {
+            selector: '.idr',
+            currency: 'IDR'
+        });
 </script>
 {{template "footer.html" .}}
