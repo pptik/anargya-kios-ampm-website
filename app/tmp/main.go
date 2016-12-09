@@ -133,10 +133,10 @@ func main() {
 				Args: []*revel.MethodArg{ 
 				},
 				RenderArgNames: map[int][]string{ 
-					554: []string{ 
+					558: []string{ 
 						"produk",
 					},
-					559: []string{ 
+					563: []string{ 
 					},
 				},
 			},
@@ -145,7 +145,7 @@ func main() {
 				Args: []*revel.MethodArg{ 
 				},
 				RenderArgNames: map[int][]string{ 
-					564: []string{ 
+					569: []string{ 
 						"kode_produk",
 					},
 				},

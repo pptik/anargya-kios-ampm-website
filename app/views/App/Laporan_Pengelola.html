@@ -97,13 +97,13 @@
     for (var i = 0; i < parse.length; i++) {//loop baris transaksi hari berjalan
         //Pengkondisian status
         var status;
-        if(parse[i].Status == 1){
+        if(parse[i].Status == 0){
             status = "<div class='ui red horizontal label'>Gagal</div>"
-        }else if(parse[i].Status == 0){
+        }else if(parse[i].Status == 1){
             status = "<div class='ui green horizontal label'>Berhasil</div>"
         }
 
-        $("#tbody-laporan").append("<tr><td>"+(i+1)+"</td><td></td><td>"+status+"</td><td></td><td></td><td>"+parse[i].ProductCode+"</td><td>"+parse[i].Amount+"</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td style='text-align: center;'><a href='/status_laporan/"+parse[i].Id+"'><i class='write icon'></i></a></td></tr>")
+        $("#tbody-laporan").append("<tr><td>"+(i+1)+"</td><td></td><td>"+status+"</td><td></td><td></td><td>"+parse[i].ProductCode+"</td><td class='idr'>"+parse[i].Amount+"</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td style='text-align: center;'><a href='/status_laporan/"+parse[i].Id+"'><i class='write icon'></i></a></td></tr>")
     }
 
     $('#laporan').DataTable({
@@ -112,5 +112,11 @@
             'copy', 'csv', 'excel', 'pdf', 'print'
         ]
     });
+
+    OSREC.CurrencyFormatter.formatAll(
+        {
+            selector: '.idr',
+            currency: 'IDR'
+        });
 </script>
 {{template "footer.html" .}}
